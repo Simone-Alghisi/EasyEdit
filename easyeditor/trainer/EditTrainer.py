@@ -193,7 +193,7 @@ class EditTrainer(BaseTrainer):
         averager = RunningStatAverager("val")
 
         start_time = time.time()
-        for val_step, batch in enumerate(self.val_loader):
+        for val_step, batch in enumerate(tqdm(self.val_loader, desc=f"Evaluating for {steps} steps")):
             if val_step >= steps:
                 break
             _, _, _, _, info_dict = self.edit_step(batch, training=False)

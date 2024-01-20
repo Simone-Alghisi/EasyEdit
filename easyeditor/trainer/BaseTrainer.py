@@ -6,6 +6,7 @@ import tempfile
 import time
 
 import torch
+from tqdm import tqdm, trange
 import copy
 from .losses import kl_loc_loss
 from .utils import *
@@ -158,8 +159,8 @@ class BaseTrainer:
 
         self.epoches = round(float(self.config.max_iters) / (len(self.train_set) / self.config.batch_size))
         self.global_iter = 0
-        for epoch in range(self.epoches):
-            for i, batch in enumerate(self.train_loader):
+        for epoch in trange(self.epoches, desc="Epochs"):
+            for i, batch in enumerate(tqdm(self.train_loader, desc="Batches")):
                 self.global_iter += 1
                 if self.global_iter >= self.config.max_iters:
                     break

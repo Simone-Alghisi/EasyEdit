@@ -179,7 +179,7 @@ def test_generation_quality(
     ret = {
         "ngram_entropy": ngram_entropy,
         # "reference_score": consistency_tfidf,
-        # "text": gen_texts,
+        "text": gen_texts,
     }
 
     # if len(essence_texts) > 0:
